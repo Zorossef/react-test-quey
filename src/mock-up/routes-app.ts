@@ -1,3 +1,4 @@
+import Delete from "@/pages/Delete";
 import { AiFillAppstore, AiOutlineUser } from "react-icons/ai";
 import Admin from "../pages/Admin";
 import Products from "../pages/Products";
@@ -18,7 +19,7 @@ export const routes = [
   },
   {
     path: "/delete",
-    element: Admin,
+    element: Delete,
     title: "Delete",
     icon: AiOutlineUser,
   },

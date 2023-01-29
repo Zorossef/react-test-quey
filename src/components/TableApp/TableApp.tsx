@@ -1,51 +1,42 @@
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-} from "@chakra-ui/react";
+import { Table, Thead, Tr, Th, TableContainer } from "@chakra-ui/react";
+import { colsProps } from "./entities";
+import Rows from "./Rows";
 
-const TableApp = () => {
+interface PropsTable {
+  size?: string;
+  cols: colsProps;
+  data: any;
+  maxHeight: string;
+}
+
+const TableApp = ({ size, cols, data, maxHeight }: PropsTable) => {
   return (
-    <TableContainer>
-      <Table variant="simple">
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
-        <Thead>
+    <TableContainer
+      maxHeight={maxHeight}
+      overflowY={"auto"}
+      overflowX={"hidden"}
+      borderRadius={"5px"}
+      border={"1px solid #7AC1E4"}
+      display={"flex"}
+      alignSelf={"center"}
+    >
+      <Table variant="simple" size={size} colorScheme={"telegram"}>
+        <Thead position="sticky" top={0} bgColor={"telegram.300"} zIndex={999}>
           <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
+            {cols.map((col) => {
+              return (
+                <Th
+                  color={"white"}
+                  fontSize={"16px"}
+                  textAlign={col.name === "actions" ? "center" : "left"}
+                >
+                  {col.name}
+                </Th>
+              );
+            })}
           </Tr>
         </Thead>
-        <Tbody>
-          <Tr>
-            <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
-            <Td isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td isNumeric>0.91444</Td>
-          </Tr>
-        </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-          </Tr>
-        </Tfoot>
+        <Rows cols={cols} data={data} />
       </Table>
     </TableContainer>
   );

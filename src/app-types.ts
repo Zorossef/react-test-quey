@@ -9,7 +9,7 @@ export type ProductsType = {
   brand: string;
   category: string;
   thumbnail?: string;
-  images?: [];
+  images?: string[];
 };
 
 export interface DataProduct {

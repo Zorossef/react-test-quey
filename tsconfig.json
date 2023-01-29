@@ -15,14 +15,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"]
     },
     "incremental": true,
     "typeRoots": ["node_modules/@types", "src/types"],
     "noUncheckedIndexedAccess": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["react-app-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

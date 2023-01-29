@@ -14,13 +14,14 @@ export const ImageContent = styled.div`
   width: 100%;
   height: 400px;
   overflow: hidden;
+  border-radius: 5px;
 `;
 export const Img = styled.img`
   transition: 0.5s all ease-in-out;
   width: 100%;
   height: 400px;
   object-fit: cover;
-
+  cursor: pointer;
   &:hover {
     -ms-transform: scale(1.2);
     -moz-transform: scale(1.2);
@@ -48,22 +49,22 @@ export const AddToCart = styled.div`
 export const Details = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  gap: 15px;
+  margin-top: 10px;
+  gap: 10px;
 `;
 export const Category = styled.div`
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   color: #656565;
 `;
 export const Title = styled.div`
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: #000000;
 `;
 
 export const Price = styled.div`
-  font-size: 29px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 500;
   color: #656565;
 `;

@@ -1,0 +1,89 @@
+//using nestjs generate an example of crud with APIs from amazon 
+
+
+import { Module } from '@nestjs/common';
+import { AmazonController } from './amazon.controller';
+import { AmazonService } from './amazon.service';
+
+@Module({
+  controllers: [AmazonController],
+  providers: [AmazonService]
+})
+export class AmazonModule {}
+
+// AmazonController
+import { Controller, Get, Put, Post, Delete, Body, Param } from '@nestjs/common';
+import { AmazonService } from './amazon.service';
+
+@Controller('amazon')
+export class AmazonController {
+  constructor(private readonly amazonService: AmazonService) {}
+
+  @Get()
+  findAll() {
+    return this.amazonService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param() params) {
+    return this.amazonService.findOne(params.id);
+  }
+
+  @Post()
+  create(@Body() body) {
+    return this.amazonService.create(body);
+  }
+
+  @Put(':id')
+  update(@Param() params, @Body() body) {
+    return this.amazonService.update(params.id, body);
+  }
+
+  @Delete(':id')
+  delete(@Param() params) {
+    return this.amazonService.delete(params.id);
+  }
+}
+
+// AmazonService
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AmazonService {
+  private items: any[] = [
+    {
+      id: 1,
+      name: 'Book',
+      description: 'Harry Potter and the Prisoner of Azkaban',
+    },
+    {
+      id: 2,
+      name: 'Headphones',
+      description: 'Beats by Dre',
+    },
+  ];
+
+  findAll() {
+    return this.items;
+  }
+
+  findOne(id: number) {
+    return this.items.find(item => item.id === id);
+  }
+
+  create(item: any) {
+    this.items.push(item);
+    return item;
+  }
+
+  update(id: number, item: any) {
+    const index = this.items.findIndex(item => item.id === id);
+    this.items[index] = item;
+    return item;
+  }
+
+  delete(id: number) {
+    const index = this.items.findIndex(item => item.id === id);
+    this.items.splice(index, 1);
+  }
+}
